@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Facades\DB;
 
 class User extends Authenticatable
 {
@@ -25,6 +26,7 @@ class User extends Authenticatable
         'foto',
         'area',
         'no_hp',
+        'kelas',
     ];
 
     /**
@@ -46,4 +48,29 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+    protected static $enumCache = [];
+
+    public static function getKelasOptions($column)
+    {
+        $instance = new static;
+
+        if (!isset(self::$enumCache[$column])) {
+            $enumValues = [];
+
+            // Menggunakan query langsung untuk mendapatkan nilai-nilai enum
+            $type = DB::select("SHOW COLUMNS FROM {$instance->getTable()} WHERE Field = '{$column}'")[0]->Type;
+
+            preg_match('/^enum\((.*)\)$/', $type, $matches);
+
+            $enumValues = array_map(
+                'trim',
+                explode(',', str_replace("'", '', $matches[1]))
+            );
+
+            // Simpan hasil dalam cache
+            self::$enumCache[$column] = $enumValues;
+        }
+
+        return self::$enumCache[$column];
+    }
 }

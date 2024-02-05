@@ -15,6 +15,9 @@
                     @endif
 
                     {{ __('You are logged in!') }}
+
+                    <p><a href="{{ route('profile') }}">Profil</a>
+                    </p>
                 </div>
             </div>
         </div>
