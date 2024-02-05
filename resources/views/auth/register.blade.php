@@ -8,7 +8,7 @@
                 <div class="card-header">{{ __('Register') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data" >
+                    <form method="POST" action="{{ route('register') }}">
                         @csrf
 
                         <div class="row mb-3">
@@ -58,50 +58,6 @@
 
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="area" class="col-md-4 col-form-label text-md-end">{{ __('Area') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="area" type="text" class="form-control @error('area') is-invalid @enderror" name="area"  required autocomplete="area" autofocus>
-
-                                @error('area')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="no_hp" class="col-md-4 col-form-label text-md-end">{{ __('No Hp') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="no_hp" type="text" class="form-control @error('no_hp') is-invalid @enderror" name="no_hp"  required autocomplete="no_hp" autofocus>
-
-                                @error('no_hp')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-
-
-                        <div class="row mb-3">
-                            <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Foto') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="foto" type="file" class="form-control @error('foto') is-invalid @enderror" name="foto"  required autocomplete="name" autofocus>
-
-                                @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
                             </div>
                         </div>
 
