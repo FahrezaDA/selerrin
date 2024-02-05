@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Storage;
 
 class RegisterController extends Controller
 {
@@ -28,7 +29,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/waiting';
 
     /**
      * Create a new controller instance.
@@ -66,18 +67,28 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        // Simpan file foto dengan nama yang unik (nama pengguna)
-        $foto = $data['foto']->storeAs('foto_profil', $data['name'].'.'.$data['foto']->getClientOriginalExtension());
+        // Validasi dan penyimpanan file
+        if (isset($data['foto']) && $data['foto']->isValid()) {
+            $foto = $data['foto']->storeAs('foto_profil', $data['name'].'.'.$data['foto']->getClientOriginalExtension(), 'public');
+        } else {
+            $foto = null; // Atau berikan nilai default jika tidak ada file yang diunggah
+        }
+        $formattedArea = ucwords($data['area']);
 
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'foto' => $foto,
-            'area' => $data['area'],
+            'area' => $formattedArea,
             'no_hp' => $data['no_hp'],
-            'kelas' => 'reseller',
+            'kelas' => 'none',
         ]);
+    }
+
+
+    public function IndexUser(){
+        return view('auth.profil');
     }
 
 }

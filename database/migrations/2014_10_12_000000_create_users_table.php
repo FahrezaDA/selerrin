@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('foto')->nullable();
             $table->string('area')->nullable();
             $table->string('no_hp')->nullable();
-            $table->enum('kelas', ['owner', 'admin', 'reseller']);
+            $table->enum('kelas', ['owner', 'admin', 'reseller','none']);
             $table->rememberToken();
             $table->timestamps();
         });
