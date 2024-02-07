@@ -20,6 +20,12 @@ Route::get('/waiting', [App\Http\Controllers\HomeController::class, 'waiting'])-
 
 Auth::routes();
 
+//user
+Route::get('/indexUser', [App\Http\Controllers\UserController::class, 'index'])->name('indexUser');
+Route::get('/delete-user', [App\Http\Controllers\UserController::class, 'destroy'])->name('delete-user');
+
+
+
 // dashboard
 Route::get('/index', [App\Http\Controllers\DashboardController::class, 'index'])->name('index');
 
