@@ -13,7 +13,7 @@ class UserController extends Controller
     public function index()
     {
         $dataUser = User::all();
-        return view("dashboard.user", compact('dataUser'));
+        return view("dashboard/user/user", compact('dataUser'));
     }
 
     /**

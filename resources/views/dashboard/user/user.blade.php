@@ -6,13 +6,6 @@
 
 <body id="page-top">
 
-    <!-- Page Wrapper -->
-
-
-        <!-- Sidebar -->
-
-
-        <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
 
             <!-- Main Content -->
@@ -220,19 +213,11 @@
                         </li>
 
                     </ul>
-
                 </nav>
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-
-                    <!-- Page Heading -->
-                    {{-- <h1 class="h3 mb-2 text-gray-800">Tables</h1>
-                    <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
-                        For more information about DataTables, please visit the <a target="_blank"
-                            href="https://datatables.net">official DataTables documentation</a>.</p> --}}
-
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
@@ -250,7 +235,6 @@
                                             <th>Area</th>
                                             <th>No Hp</th>
                                             <th>Status</th>
-
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -263,14 +247,11 @@
                                                 <td class="text-center">{{ $loop->iteration }}</td>
                                                 <td>{{ $data->name }}</td>
                                                 <td>{{ $data->email }}</td>
-
                                                 <td>{{ $data->area }}</td>
                                                 <td>{{ $data->no_hp }}</td>
                                                 <td>{{ $data->kelas }}</td>
-
-
                                                 <td>
-                                                    <a href="#" class="edit-button" data-bs-toggle="modal" data-bs-target="#edit-file" data-id="{{ $data->id }}" data-activity="{{ $data->activity_id }}" data-preview-link="{{ $data->preview_link }}" data-download-link="{{ $data->download_link }}">
+                                                    <a href="#" class="edit-button" data-bs-toggle="modal" data-bs-target="#edit-user" data-id="{{ $data->id }}" data-activity="{{ $data->activity_id }}" data-preview-link="{{ $data->preview_link }}" data-download-link="{{ $data->download_link }}">
                                                         <i class="fas fa-edit"></i>
                                                     </a>
                                                     <a href="{{ route('delete-user', $data->id) }}">
@@ -289,27 +270,66 @@
             <!-- ... (modals and scripts) ... -->
         </section>
     </div>
+
+
+    <!-- Modal Edit Data -->
+<div class="modal fade" id="edit-user" tabindex="-1" role="dialog" aria-labelledby="editUserModalLabel"
+aria-hidden="true">
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="editUserModalLabel">Edit User</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
         </div>
+        <div class="modal-body">
+            <!-- Form for editing user data -->
+            <form id="edit-user-form">
+                <!-- Add form fields for editing user data here -->
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+    </div>
+</div>
+</div>
 
-                        </div>
-                    </div>
+<!-- Modal Add Data -->
+<div class="modal fade" id="add-user" tabindex="-1" role="dialog" aria-labelledby="addUserModalLabel"
+aria-hidden="true">
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="addUserModalLabel">Add User</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <!-- Form for adding new user data -->
+            <form id="add-user-form">
+                <!-- Add form fields for new user data here -->
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Add User</button>
+        </div>
+    </div>
+</div>
+</div>
 
-                </div>
+
+
                 <!-- /.container-fluid -->
 
-            </div>
+
             <!-- End of Main Content -->
 
 
-            <!-- End of Footer -->
-
-        </div>
-        <!-- End of Content Wrapper -->
-
-    </div>
-    <!-- End of Page Wrapper -->
-
-    <!-- Scroll to Top Button-->
     <a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>
     </a>
@@ -335,22 +355,5 @@
     </div>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
-    <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
-
-    <!-- Page level plugins -->
-    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="js/demo/datatables-demo.js"></script>
-
-</body>
 @endsection
 
