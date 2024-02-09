@@ -45,15 +45,36 @@ class UserController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $data=User::where('id_user',$id)->first();
+        return view('', compact('data'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id_user)
     {
-        //
+        // Validasi data yang diterima dari formulir
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email',
+            'area' => 'required|string|max:255',
+            'no_hp' => 'required|string|max:20', // Sesuaikan dengan aturan validasi Anda
+        ]);
+
+        // Temukan data pengguna berdasarkan ID yang diberikan
+        $data = User::findOrFail($id_user);
+
+        // Perbarui data pengguna
+        $data->name = $request->name;
+        $data->email = $request->email;
+        $data->area = $request->area;
+        $data->no_hp = $request->no_hp;
+        $data->kelas = $request->kelas;
+        $data->save();
+
+        // Redirect ke halaman yang sesuai atau tampilkan pesan sukses
+        return redirect()->route('indexUser')->with('success', 'User updated successfully');
     }
 
     /**

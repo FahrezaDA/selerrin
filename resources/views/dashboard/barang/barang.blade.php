@@ -251,17 +251,14 @@
                                                 <td>{{ $data->no_hp }}</td>
                                                 <td>{{ $data->kelas }}</td>
                                                 <td>
-                                                    <a href="#" class="edit-button" data-bs-toggle="modal" data-bs-target="#edit-user" data-id_user="{{ $data->id_user }}" data-name="{{ $data->name }}" data-email="{{ $data->email }}" data-area="{{ $data->area }}" data-no_hp="{{ $data->no_hp }}" data-kelas="{{ $data->kelas }}">
+                                                    <a href="#" class="edit-button" data-bs-toggle="modal" data-bs-target="#edit-user" data-id="{{ $data->id }}" data-activity="{{ $data->activity_id }}" data-preview-link="{{ $data->preview_link }}" data-download-link="{{ $data->download_link }}">
                                                         <i class="fas fa-edit"></i>
                                                     </a>
-
                                                     <a href="{{ route('delete-user', $data->id) }}">
                                                         <i class="fas fa-trash-alt" style="color: red"></i>
                                                     </a>
                                                 </td>
                                             </tr>
-                                            @include('dashboard.user.edit')
-
                                         @endforeach
                                     </tbody>
                                 </table>
@@ -276,7 +273,29 @@
 
 
     <!-- Modal Edit Data -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+<div class="modal fade" id="edit-user" tabindex="-1" role="dialog" aria-labelledby="editUserModalLabel"
+aria-hidden="true">
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="editUserModalLabel">Edit User</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <!-- Form for editing user data -->
+            <form id="edit-user-form">
+                <!-- Add form fields for editing user data here -->
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+    </div>
+</div>
+</div>
 
 <!-- Modal Add Data -->
 <div class="modal fade" id="add-user" tabindex="-1" role="dialog" aria-labelledby="addUserModalLabel"
@@ -302,6 +321,15 @@ aria-hidden="true">
     </div>
 </div>
 </div>
+
+
+
+                <!-- /.container-fluid -->
+
+
+            <!-- End of Main Content -->
+
+
     <a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>
     </a>

@@ -24,7 +24,8 @@ Auth::routes();
 Route::get('/indexUser', [App\Http\Controllers\UserController::class, 'index'])->name('indexUser');
 Route::get('/delete-user', [App\Http\Controllers\UserController::class, 'destroy'])->name('delete-user');
 Route::post('/add-user', [App\Http\Controllers\UserController::class, 'store'])->name('add-user');
-Route::put('/update-user', [App\Http\Controllers\UserController::class, 'update'])->name('update-user');
+Route::put('/update-user/{id_user}', [App\Http\Controllers\UserController::class, 'update'])->name('update-user');
+Route::get('{id}/edit-user', [App\Http\Controllers\UserController::class, 'edit'])->name('edit-user');
 
 
 
