@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('content')
-@include('layouts.footer')
+{{-- @include('layouts.footer') --}}
 @include('layouts.navbar')
 
 
@@ -255,7 +255,7 @@
                                                         <i class="fas fa-edit"></i>
                                                     </a>
 
-                                                    <a href="{{ route('delete-user', $data->id) }}">
+                                                    <a href="{{ route('delete-user', $data->id_user) }}" onclick="return confirm('Apakah Anda yakin ingin menghapus produk ini?')">
                                                         <i class="fas fa-trash-alt" style="color: red"></i>
                                                     </a>
                                                 </td>

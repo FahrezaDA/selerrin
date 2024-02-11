@@ -74,14 +74,16 @@ class UserController extends Controller
         $data->save();
 
         // Redirect ke halaman yang sesuai atau tampilkan pesan sukses
-        return redirect()->route('indexUser')->with('success', 'User updated successfully');
+        return redirect()->route('user')->with('success', 'User updated successfully');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $id_user)
     {
-
+        $user = User::find($id_user);
+        $user->delete();
+        return redirect()->route('user');
     }
 }
