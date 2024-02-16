@@ -14,7 +14,7 @@
         // Mengisi nilai-nilai tersebut ke dalam form modal
         document.getElementById('edit-user-form').setAttribute('action', '/update-produk/' + id_produk); // Sesuaikan URL action form dengan URL Anda
         document.getElementById('edit-nama').value = nama;
-        document.getElementById('edit-foto').value = foto;
+        // document.getElementById('edit-foto').value = foto;
         document.getElementById('edit-harga').value = harga; // Mengisi nilai harga
         document.getElementById('edit-stok').value = stok; // Mengisi nilai stok
 
@@ -44,12 +44,12 @@ aria-hidden="true">
             @if ($data->count() == 0)
             <p>data kosong</p>
         @else
-            <form id="edit-user-form" action="{{route('update-produk',$data->id_produk)}}" method="POST" enctype="multipart/form-data">
+            <form action="{{route('update-produk',$data->id_produk)}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="form-group">
                     <label for="edit-nama">Name</label>
-                    <input type="text" name="nama"  class="form-control" id="edit-nama" placeholder="Enter name">
+                    <input type="text" name="nama_produk"  class="form-control" id="edit-nama" placeholder="Enter name">
                 </div>
                 <div class="form-group">
                     <label for="edit-foto">Foto</label>
@@ -61,7 +61,7 @@ aria-hidden="true">
                     <input type="text" name="harga_produk" class="form-control" id="edit-harga" placeholder="Enter harga">
                 </div>
                 <div class="form-group">
-                    <label for="edit-stok_produkk">Stok</label>
+                    <label for="edit-stok">Stok</label>
                     <input type="text" name="stok_produk" class="form-control" id="edit-stok" placeholder="Enter stok barang">
                 </div>
 

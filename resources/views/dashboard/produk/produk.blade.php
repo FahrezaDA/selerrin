@@ -4,13 +4,13 @@
 @include('layouts.navbar')
 
 
+@auth
 <body id="page-top">
 
         <div id="content-wrapper" class="d-flex flex-column">
 
             <!-- Main Content -->
             <div id="content">
-
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
@@ -162,6 +162,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
 <!-- Modal Add Data -->
+
 <div class="modal fade" id="add-user" tabindex="-1" role="dialog" aria-labelledby="addUserModalLabel"
 aria-hidden="true">
 <div class="modal-dialog" role="document">
@@ -208,7 +209,14 @@ aria-hidden="true">
             </div>
         </div>
     </div>
-
+    @endauth
+    @guest <!-- Menampilkan pesan jika pengguna belum login -->
+    <div class="container">
+        <div class="alert alert-warning" role="alert">
+            Anda harus login untuk mengakses halaman ini.
+        </div>
+    </div>
+    @endguest
     <!-- Bootstrap core JavaScript-->
 @endsection
 

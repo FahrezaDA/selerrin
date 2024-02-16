@@ -49,7 +49,7 @@
                 @if ($dataUser->count() == 0)
                     <p>data kosong</p>
                 @else
-                    <form id="edit-user-form" action="{{route('update-user',$data->id_user)}}" method="POST" enctype="multipart/form-data">
+                    <form  action="{{route('update-user',$data->id_user)}}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <div class="form-group">

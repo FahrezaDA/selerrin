@@ -3,7 +3,7 @@
 {{-- @include('layouts.footer') --}}
 @include('layouts.navbar')
 
-
+@auth
 <body id="page-top">
 
         <div id="content-wrapper" class="d-flex flex-column">
@@ -279,13 +279,13 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
 <!-- Modal Add Data -->
-<div class="modal fade" id="add-user" tabindex="-1" role="dialog" aria-labelledby="addUserModalLabel"
+<div class="modal" id="add-user" tabindex="-1" role="dialog" aria-labelledby="addUserModalLabel"
 aria-hidden="true">
 <div class="modal-dialog" role="document">
     <div class="modal-content">
         <div class="modal-header">
             <h5 class="modal-title" id="addUserModalLabel">Add User</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
@@ -296,7 +296,7 @@ aria-hidden="true">
             </form>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             <button type="button" class="btn btn-primary">Add User</button>
         </div>
     </div>
@@ -307,25 +307,32 @@ aria-hidden="true">
     </a>
 
     <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    <div class="modal" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <button class="close" type="button" data-bs-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Cancel</button>
                     <a class="btn btn-primary" href="login.html">Logout</a>
                 </div>
             </div>
         </div>
     </div>
-
+    @endauth
+    @guest <!-- Menampilkan pesan jika pengguna belum login -->
+    <div class="container">
+        <div class="alert alert-warning" role="alert">
+            Anda harus login untuk mengakses halaman ini.
+        </div>
+    </div>
+    @endguest
     <!-- Bootstrap core JavaScript-->
 @endsection
 

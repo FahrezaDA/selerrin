@@ -20,21 +20,21 @@ Route::get('/waiting', [App\Http\Controllers\HomeController::class, 'waiting'])-
 
 Auth::routes();
 
-//user
-Route::get('user', [App\Http\Controllers\UserController::class, 'index'])->name('user');
-Route::get('delete-user/{id_user}', [App\Http\Controllers\UserController::class, 'destroy'])->name('delete-user');
-Route::post('/add-user', [App\Http\Controllers\UserController::class, 'store'])->name('add-user');
-Route::put('/update-user/{id_user}', [App\Http\Controllers\UserController::class, 'update'])->name('update-user');
-Route::get('{id}/edit-user', [App\Http\Controllers\UserController::class, 'edit'])->name('edit-user');
+Route::middleware(['auth'])->group(function () {
+    //user
+    Route::get('user', [App\Http\Controllers\UserController::class, 'index'])->name('user');
+    Route::get('delete-user/{id_user}', [App\Http\Controllers\UserController::class, 'destroy'])->name('delete-user');
+    Route::post('/add-user', [App\Http\Controllers\UserController::class, 'store'])->name('add-user');
+    Route::put('/update-user/{id_user}', [App\Http\Controllers\UserController::class, 'update'])->name('update-user');
+    Route::get('{id}/edit-user', [App\Http\Controllers\UserController::class, 'edit'])->name('edit-user');
 
-
-//barang
-Route::get('produk', [App\Http\Controllers\ProdukController::class,'index'])->name('produk');
-Route::post('add-produk', [App\Http\Controllers\ProdukController::class,'store'])->name('add-produk');
-Route::get('delete-produk/{id_produk}', [App\Http\Controllers\ProdukController::class,'destroy'])->name('delete-produk');
-Route::put('update-produk/{id_produk}', [App\Http\Controllers\ProdukController::class,'update'])->name('update-produk');
-Route::get('{id_produk}/edit-produk', [App\Http\Controllers\ProdukController::class,'edit'])->name('edit-produk');
-
+    //barang (protected by auth middleware)
+    Route::get('produk', [App\Http\Controllers\ProdukController::class,'index'])->name('produk');
+    Route::post('add-produk', [App\Http\Controllers\ProdukController::class,'store'])->name('add-produk');
+    Route::get('delete-produk/{id_produk}', [App\Http\Controllers\ProdukController::class,'destroy'])->name('delete-produk');
+    Route::put('update-produk/{id_produk}', [App\Http\Controllers\ProdukController::class,'update'])->name('update-produk');
+    Route::get('{id_produk}/edit-produk', [App\Http\Controllers\ProdukController::class,'edit'])->name('edit-produk');
+});
 
 // dashboard
 Route::get('/index', [App\Http\Controllers\DashboardController::class, 'index'])->name('index');
