@@ -9,8 +9,6 @@ aria-hidden="true">
             </button>
         </div>
         <div class="modal-body">
-            <!-- Form for editing user data -->
-           <!-- Form for editing user data -->
            <form action="{{ route('add-produk') }}" class="needs-validation" novalidate="" method="POST" enctype="multipart/form-data">
             @csrf
             @method('POST')

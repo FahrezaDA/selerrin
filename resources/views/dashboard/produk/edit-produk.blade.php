@@ -1,29 +1,26 @@
 <!-- Modal Edit Data -->
 
 
+
 <script>
-    document.querySelectorAll('.edit-button').forEach(button => {
-    button.addEventListener('click', function() {
-        // Mendapatkan data dari atribut data pada tombol edit
-        const id_produk = this.getAttribute('data-id_produk');
-        const nama = this.getAttribute('data-nama');
-        const foto = this.getAttribute('data-foto');
-        const harga = this.getAttribute('data-harga');
-        const stok = this.getAttribute('data-stok');
+    $(document).ready(function() {
+        $('.edit-button').on('click', function(event) {
+            var id_produk = $(this).data('id_produk');
+            var nama_produk = $(this).data('nama_produk');
+            var harga_produk = $(this).data('harga_produk');
+            var foto_produk = $(this).data('foto_produk');
+            var stok_produk = $(this).data('stok_produk');
 
-        // Mengisi nilai-nilai tersebut ke dalam form modal
-        document.getElementById('edit-user-form').setAttribute('action', '/update-produk/' + id_produk); // Sesuaikan URL action form dengan URL Anda
-        document.getElementById('edit-nama').value = nama;
-        // document.getElementById('edit-foto').value = foto;
-        document.getElementById('edit-harga').value = harga; // Mengisi nilai harga
-        document.getElementById('edit-stok').value = stok; // Mengisi nilai stok
+            var modal = $('#edit-produk');
+            modal.find('.modal-body #id_produk').val(id_produk);
+            modal.find('.modal-body #nama').val(nama_produk);
+            modal.find('.modal-body #harga').val(harga_produk);
+            // modal.find('.modal-body #foto_produk').val(foto_produk); // Ini tidak bisa di-set secara langsung karena input tipe file
+            modal.find('.modal-body #stok').val(stok_produk);
 
-        // Menampilkan modal
-        const modal = new bootstrap.Modal(document.getElementById('edit-produk'));
-        modal.show();
+            modal.modal('show');
+        });
     });
-});
-
 </script>
 
 
@@ -44,25 +41,25 @@ aria-hidden="true">
             @if ($data->count() == 0)
             <p>data kosong</p>
         @else
-            <form action="{{route('update-produk',$data->id_produk)}}" method="POST" enctype="multipart/form-data">
+            <form  action="{{route('update-produk',$data->id_produk)}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="form-group">
                     <label for="edit-nama">Name</label>
-                    <input type="text" name="nama_produk"  class="form-control" id="edit-nama" placeholder="Enter name">
+                    <input type="text" name="nama_produk"  class="form-control" id="nama" placeholder="Enter name">
                 </div>
                 <div class="form-group">
                     <label for="edit-foto">Foto</label>
-                    <input type="file" name="foto_produk" class="form-control" id="edit-foto" aria-describedby="emailHelp" placeholder="Enter email">
+                    <input type="file" name="foto_produk" class="form-control" id="foto" aria-describedby="emailHelp" placeholder="Enter email">
 
                 </div>
                 <div class="form-group">
                     <label for="edit-harga">Harga</label>
-                    <input type="text" name="harga_produk" class="form-control" id="edit-harga" placeholder="Enter harga">
+                    <input type="text" name="harga_produk" class="form-control" id="harga" placeholder="Enter harga">
                 </div>
                 <div class="form-group">
                     <label for="edit-stok">Stok</label>
-                    <input type="text" name="stok_produk" class="form-control" id="edit-stok" placeholder="Enter stok barang">
+                    <input type="text" name="stok_produk" class="form-control" id="stok" placeholder="Enter stok barang">
                 </div>
 
 

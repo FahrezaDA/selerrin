@@ -56,5 +56,5 @@ aria-hidden="true">
 </div>
 </div>
 
-<!-- jQuery -->
+
 

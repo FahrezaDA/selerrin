@@ -112,9 +112,9 @@
                                             <td>{{ $data->stok_produk }}</td>
                                             <td>
                                                 <a href="#" class="edit-button" data-bs-toggle="modal" data-bs-target="#edit-produk"
-                                                   data-id_produk="{{ $data->id_produk }}" data-nama="{{ $data->nama_produk }}"
-                                                   data-foto="{{ $data->foto_produk }}" data-harga="{{ $data->harga_produk}}"
-                                                   data-stok="{{ $data->stok_produk }}">
+                                                   data-id_produk="{{ $data->id_produk }}" data-nama_produk="{{ $data->nama_produk }}"
+                                                   data-foto_produk="{{ $data->foto_produk }}" data-harga_produk="{{ $data->harga_produk}}"
+                                                   data-stok_produk="{{ $data->stok_produk }}">
                                                     <i class="fas fa-edit"></i>
                                                 </a>
                                                 <a href="{{ route('delete-produk', $data->id_produk) }}" onclick="return confirm('Apakah Anda yakin ingin menghapus produk ini?')">
