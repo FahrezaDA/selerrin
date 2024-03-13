@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Produk;
+use App\Models\Transaksi;
+use App\Models\User;
+use Illuminate\Support\Facades\Redirect;
 class ProdukController extends Controller
 {
     /**
@@ -12,9 +15,14 @@ class ProdukController extends Controller
     public function index()
     {
         $dataProduk = Produk::all();
-        return view("dashboard.produk.produk", compact('dataProduk'));
+        $dataUser= User::all();
+        return view("dashboard.produk.produk", compact('dataProduk','dataUser'));
     }
-
+    public function testView()
+    {
+        $dataProduk = Produk::all();
+        return view("test-reseller", compact('dataProduk'));
+    }
     /**
      * Show the form for creating a new resource.
      */
@@ -132,4 +140,29 @@ class ProdukController extends Controller
         $produk->delete();
         return redirect()->route('produk');
 }
+
+public function KirimReseller(Request $request){
+    // Proses validasi dan pembuatan transaksi
+
+
+    foreach ($request->id_produk as $index => $id_produk) {
+        // Simpan transaksi
+        $transaksi = new Transaksi;
+        $transaksi->id_user = $request->id_user[$index];
+        $transaksi->id_produk = $id_produk;
+        $transaksi->tanggal_waktu_transaksi = now();
+        $transaksi->jumlah_produk = $request->jumlah_produk[$index];
+        $transaksi->save();
+
+
+        // Kurangi stok produk
+        $produk = Produk::findOrFail($id_produk);
+        $produk->stok_produk -= $request->jumlah_produk[$index];
+        $produk->save();
+    }
+
+    return redirect()->route('produk')->with('success', 'Produk berhasil ditambahkan.');
+}
+
+
 }

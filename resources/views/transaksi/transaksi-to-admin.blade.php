@@ -79,13 +79,13 @@
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Data Produk</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Data Transaksi Admin</h6>
                         </div>
                         <div class="card-header py-3">
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add-produk">Tambah Produk</button>
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add-produk-to-admin">Add to admin</button>
-                        @include('dashboard.produk.add-produk')
-                        @include('dashboard.produk.add-produk-to-admin')
+                        {{-- @include('dashboard.produk.add-produk')
+                        @include('dashboard.produk.add-produk-to-admin') --}}
                         </div>
                         <div class="card-body">
 
@@ -94,10 +94,10 @@
                                     <thead>
                                         <tr>
                                             <th class="text-center">No</th>
-                                            <th>Nama</th>
-                                            <th>Foto</th>
-                                            <th>Harga</th>
-                                            <th>Stok</th>
+                                            <th>Admin</th>
+                                            <th>Produk</th>
+                                            <th>Tanggal</th>
+                                            <th>Jumlah</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -105,13 +105,13 @@
                                         <!-- footer content -->
                                     </tfoot>
                                     <tbody>
-                                        @foreach ($dataProduk as $data)
+                                        @foreach ($dataTransaksi as $data)
                                         <tr>
                                             <td class="text-center">{{ $loop->iteration }}</td>
-                                            <td>{{ $data->nama_produk }}</td>
-                                            <td>{{ $data->foto_produk }}</td>
-                                            <td>{{ $data->harga_produk }}</td>
-                                            <td>{{ $data->stok_produk }}</td>
+                                            <td>{{ $data->user->name}}</td>
+                                            <td>{{ $data->produk->nama_produk }}</td>
+                                            <td>{{ $data->tanggal_waktu_transaksi }}</td>
+                                            <td>{{ $data->jumlah_produk }}</td>
                                             <td>
                                                 <a href="#" class="edit-button" data-bs-toggle="modal" data-bs-target="#edit-produk"
                                                    data-id_produk="{{ $data->id_produk }}" data-nama_produk="{{ $data->nama_produk }}"

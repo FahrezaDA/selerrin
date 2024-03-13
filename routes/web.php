@@ -16,6 +16,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+// Route::get('/test-transaksi', function () {
+//     return view('test-reseller');
+// });
 Route::get('/waiting', [App\Http\Controllers\HomeController::class, 'waiting'])->name('waiting');
 
 Auth::routes();
@@ -34,7 +38,13 @@ Route::middleware(['auth'])->group(function () {
     Route::get('delete-produk/{id_produk}', [App\Http\Controllers\ProdukController::class,'destroy'])->name('delete-produk');
     Route::put('update-produk/{id_produk}', [App\Http\Controllers\ProdukController::class,'update'])->name('update-produk');
     Route::get('{id_produk}/edit-produk', [App\Http\Controllers\ProdukController::class,'edit'])->name('edit-produk');
-});
+    Route::post('kirim-reseller', [App\Http\Controllers\ProdukController::class,'KirimReseller'])->name('kirim-reseller');
+
+
+    //Transaksi
+    Route::get('transaksi',[App\Http\Controllers\TransaksiController::class,'index'])->name('transaksi.admin');
+//     //Route::get('test-reseller', [App\Http\Controllers\ProdukController::class,'testView'])->name('test-reseller');
+ });
 
 // dashboard
 Route::get('/index', [App\Http\Controllers\DashboardController::class, 'index'])->name('index');

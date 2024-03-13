@@ -16,4 +16,10 @@ class Produk extends Model
         'harga_produk',
         'stok_produk',
             ];
+
+
+public function transactions()
+{
+    return $this->hasMany(Transaction::class);
+}
 }
